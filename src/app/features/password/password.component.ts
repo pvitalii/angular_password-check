@@ -17,10 +17,6 @@ export class PasswordComponent {
         this.status = STATUS.EMPTY;
         break
 
-      case this.password.length < 8:
-        this.status = STATUS.INVALID;
-        break
-
       case REGEX.STRONG.test(this.password):
         this.status = STATUS.STRONG;
         break
@@ -31,6 +27,10 @@ export class PasswordComponent {
 
       case REGEX.EASY.test(this.password):
         this.status = STATUS.EASY;
+        break
+      
+      case this.password.length < 8:
+        this.status = STATUS.INVALID;
         break
     }
   }
