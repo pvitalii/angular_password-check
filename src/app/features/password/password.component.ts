@@ -12,26 +12,24 @@ export class PasswordComponent {
   status = '';
 
   passwordCheck(): void {
-    switch (true) {
-      case this.password.length === 0:
-        this.status = STATUS.EMPTY;
-        break
+    if (this.password.length < 8) {
+      this.status = STATUS.INVALID;
+    }
+    
+    if (this.password.length === 0) {
+      this.status = STATUS.EMPTY;
+    }
+    
+    if (REGEX.EASY.test(this.password)) {
+      this.status = STATUS.EASY;
+    }
 
-      case REGEX.STRONG.test(this.password):
-        this.status = STATUS.STRONG;
-        break
+    if (REGEX.MEDIUM.test(this.password)) {
+      this.status = STATUS.MEDIUM;
+    }
 
-      case REGEX.MEDIUM.test(this.password):
-        this.status = STATUS.MEDIUM;
-        break
-
-      case REGEX.EASY.test(this.password):
-        this.status = STATUS.EASY;
-        break
-      
-      case this.password.length < 8:
-        this.status = STATUS.INVALID;
-        break
+    if (REGEX.STRONG.test(this.password)) {
+      this.status = STATUS.STRONG;
     }
   }
 
