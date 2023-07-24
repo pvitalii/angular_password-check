@@ -1,5 +1,8 @@
+const letters = `\\p{L}`;
+const symbols = '[-._!"`\'#%&,: ; <>=@{}~\\$\\(\\) \\*\\+\\/\\\\\\?\\[\\]\\^\\|]'
+
 export const REGEX = {
-  EASY: new RegExp('^[a-z]{8,}$|^\\d{8,}$|^[-!$%^&*()_+|~=`{}\\[\\]:\\/;<>?,.@#]{8,}$', 'gi'),
-  MEDIUM: new RegExp('^(((?=.*\\d)(?=.*[\\W_])(?!.*[a-z]))|((?=.*\\d)(?!.*[\\W_])(?=.*[a-z]))|((?!.*\\d)(?=.*[\\W_])(?=.*[a-z]))).{8,}', 'gi'),
-  STRONG: new RegExp('(?=.*\\d)(?=.*[\\W_])(?=.*[a-z]).{8,}', 'gi')
+  EASY: new RegExp(`^${letters}{8,}$|^\\d{8,}$|^${symbols}{8,}$`, 'giu'),
+  MEDIUM: new RegExp(`^(((?=.*\\d)(?=.*${symbols})(?!.*${letters}))|((?=.*\\d)(?!.*${symbols})(?=.*${letters}))|((?!.*\\d)(?=.*${symbols})(?=.*${letters}))).{8,}`, 'giu'),
+  STRONG: new RegExp(`(?=.*\\d)(?=.*${symbols})(?=.*${letters}).{8,}`, 'giu')
 }
